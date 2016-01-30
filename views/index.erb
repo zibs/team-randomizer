@@ -1,0 +1,31 @@
+<h1>Team Randomizer: </h1>
+<form action="/" method = "POST">
+  <textarea name="names" id="names" cols="50" rows="10"><% if @guys %>
+<%= @guys.join(", ")%>
+  <% else %>
+  Enter names separated by comma...
+    <% end %>
+  </textarea>
+  <div>
+    <label for="num-team">Number of Teams: </label>
+    <input type="radio" id = "num-team" name = "team" value = "of_team" checked = "checked"> ////
+    <label for="per-team">People per Team: </label>
+    <input type="radio" id = "per-team" name = "team" value = "per_team">
+  </div>
+  <div>
+    <input type="text" name = "num"  value = "">
+  </div>
+  <input type="submit" value = "submit!">
+</form>
+<hr>
+<% if @error_message %>
+  <h1 style = "color: red"><%= @error_message %></h1>
+<% end %>
+
+<% if session[:teams] %>
+<ol>
+<% session[:teams].each do |team| %>
+  <li><h5><%= team.join(", ") %></h5></li>
+  <% end %>
+</ol>
+<% end %>
